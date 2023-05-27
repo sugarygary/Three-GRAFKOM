@@ -59,6 +59,59 @@ pointLight3.castShadow = true;
 scene.add(pointLight3);
 let pointLightHelper3 = new THREE.PointLightHelper(pointLight3, 5);
 scene.add(pointLightHelper3);
+
+// lampu 2
+const pointLightLamp2 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
+pointLightLamp2.position.set(7.5, 60, 330);
+pointLightLamp2.castShadow = true;
+scene.add( pointLightLamp2);
+let pointLightHelperLamp2 = new THREE.PointLightHelper(pointLightLamp2, 5);
+scene.add(pointLightHelperLamp2);
+
+const pointLight2Lamp2 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
+pointLight2Lamp2.position.set(0, 60, 315);
+pointLight2Lamp2.castShadow = true;
+scene.add( pointLight2Lamp2);
+let pointLightHelper2Lamp2 = new THREE.PointLightHelper(pointLight2Lamp2, 5);
+scene.add(pointLightHelper2Lamp2);
+
+const pointLight3Lamp2 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
+pointLight3Lamp2.position.set(-7, 60, 331);
+pointLight3Lamp2.castShadow = true;
+scene.add( pointLight3Lamp2);
+let pointLightHelper3Lamp2 = new THREE.PointLightHelper(pointLight3Lamp2, 5);
+scene.add(pointLightHelper3Lamp2);
+
+// Lampu 3
+const pointLightLamp3 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
+pointLightLamp3.position.set(-332.5, 60, 5);
+pointLightLamp3.castShadow = true;
+scene.add( pointLightLamp3);
+let pointLightHelperLamp3 = new THREE.PointLightHelper(pointLightLamp3, 5);
+scene.add(pointLightHelperLamp3);
+
+const pointLight2Lamp3 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
+pointLight2Lamp3.position.set(-317.5, 60, 5);
+pointLight2Lamp3.castShadow = true;
+scene.add( pointLight2Lamp3);
+let pointLightHelper2Lamp3 = new THREE.PointLightHelper(pointLight2Lamp3, 5);
+scene.add(pointLightHelper2Lamp3);
+
+const pointLight3Lamp3 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
+pointLight3Lamp3.position.set(-325.5, 60, -10);
+pointLight3Lamp3.castShadow = true;
+scene.add( pointLight3Lamp3);
+let pointLightHelper3Lamp3 = new THREE.PointLightHelper(pointLight3Lamp3, 5);
+scene.add(pointLightHelper3Lamp3);
+
+// Lampu 4
+const pointLightLamp4 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
+pointLightLamp4.position.set(0, 60, -334);
+pointLightLamp4.castShadow = true;
+scene.add( pointLightLamp4);
+let pointLightHelperLamp4 = new THREE.PointLightHelper(pointLightLamp4, 5);
+scene.add(pointLightHelperLamp4);
+
 //#endregion
 
 const upColour = 0xffffc8;
