@@ -5,7 +5,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 var scene = new THREE.Scene();
 var cam = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 1, 1000);
-var renderer = new THREE.WebGLRenderer({ antialias: true });
+var renderer = new THREE.WebGL1Renderer({ antialias: true });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setSize(innerWidth, innerHeight);
@@ -38,85 +38,25 @@ let pointLightbHelper = new THREE.PointLightHelper(pointLightb, 5);
 scene.add(pointLightbHelper);
 //#endregion
 
-//#region LAMPU KANAN X 325 Z 0
-const pointLight = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLight.position.set(193 + 125, 60, 6);
-pointLight.castShadow = true;
-scene.add(pointLight);
-let pointLightHelper = new THREE.PointLightHelper(pointLight, 5);
-scene.add(pointLightHelper);
-
-const pointLight2 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLight2.position.set(333, 60, 6);
-pointLight2.castShadow = true;
-scene.add(pointLight2);
-let pointLightHelper2 = new THREE.PointLightHelper(pointLight2, 5);
-scene.add(pointLightHelper2);
-
-const pointLight3 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLight3.position.set(325, 60, -10.5);
-pointLight3.castShadow = true;
-scene.add(pointLight3);
-let pointLightHelper3 = new THREE.PointLightHelper(pointLight3, 5);
-scene.add(pointLightHelper3);
+//#region lampu 1
 
 // lampu 2
-const pointLightLamp2 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLightLamp2.position.set(7.5, 60, 330);
+const pointLightLamp2 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
+pointLightLamp2.position.set(-316, 77, 0);
 pointLightLamp2.castShadow = true;
-scene.add( pointLightLamp2);
+scene.add(pointLightLamp2);
 let pointLightHelperLamp2 = new THREE.PointLightHelper(pointLightLamp2, 5);
 scene.add(pointLightHelperLamp2);
 
-const pointLight2Lamp2 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLight2Lamp2.position.set(0, 60, 315);
-pointLight2Lamp2.castShadow = true;
-scene.add( pointLight2Lamp2);
-let pointLightHelper2Lamp2 = new THREE.PointLightHelper(pointLight2Lamp2, 5);
-scene.add(pointLightHelper2Lamp2);
-
-const pointLight3Lamp2 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLight3Lamp2.position.set(-7, 60, 331);
-pointLight3Lamp2.castShadow = true;
-scene.add( pointLight3Lamp2);
-let pointLightHelper3Lamp2 = new THREE.PointLightHelper(pointLight3Lamp2, 5);
-scene.add(pointLightHelper3Lamp2);
-
-// Lampu 3
-const pointLightLamp3 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLightLamp3.position.set(-332.5, 60, 5);
-pointLightLamp3.castShadow = true;
-scene.add( pointLightLamp3);
-let pointLightHelperLamp3 = new THREE.PointLightHelper(pointLightLamp3, 5);
-scene.add(pointLightHelperLamp3);
-
-const pointLight2Lamp3 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLight2Lamp3.position.set(-317.5, 60, 5);
-pointLight2Lamp3.castShadow = true;
-scene.add( pointLight2Lamp3);
-let pointLightHelper2Lamp3 = new THREE.PointLightHelper(pointLight2Lamp3, 5);
-scene.add(pointLightHelper2Lamp3);
-
-const pointLight3Lamp3 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLight3Lamp3.position.set(-325.5, 60, -10);
-pointLight3Lamp3.castShadow = true;
-scene.add( pointLight3Lamp3);
-let pointLightHelper3Lamp3 = new THREE.PointLightHelper(pointLight3Lamp3, 5);
-scene.add(pointLightHelper3Lamp3);
+// Lampu 2
 
 // Lampu 4
-const pointLightLamp4 = new THREE.PointLight(0xf4d4ab, 20, 100, 3);
-pointLightLamp4.position.set(0, 60, -334);
-pointLightLamp4.castShadow = true;
-scene.add( pointLightLamp4);
-let pointLightHelperLamp4 = new THREE.PointLightHelper(pointLightLamp4, 5);
-scene.add(pointLightHelperLamp4);
 
 //#endregion
 
-const upColour = 0xffffc8;
+const upColour = 0x717e8e;
 const downColour = 0x4040ff;
-let hemlight = new THREE.HemisphereLight(upColour, downColour, 0.2);
+let hemlight = new THREE.HemisphereLight(upColour, downColour, 0.5);
 // helper = new THREE.HemisphereLightHelper(hemlight, 2);
 // hemlight.add(helper);
 scene.add(hemlight);
@@ -191,7 +131,7 @@ loader.load("./new_assets/bundaran_quarter.glb", function (gltf) {
     }
   });
   land.position.x = -234.5;
-  land.position.y = 1;
+  land.position.y = 0.1;
   land.position.z = -724;
   land.scale.x = 1560;
   land.scale.y = 10;
@@ -208,7 +148,7 @@ loader.load("./new_assets/bundaran_quarter.glb", function (gltf) {
     }
   });
   land2.position.x = -723;
-  land2.position.y = 1;
+  land2.position.y = 0.1;
   land2.position.z = 235;
   land2.scale.x = 1560;
   land2.scale.y = 10;
@@ -226,7 +166,7 @@ loader.load("./new_assets/bundaran_quarter.glb", function (gltf) {
     }
   });
   land3.position.x = -234.5 + 959;
-  land3.position.y = 1;
+  land3.position.y = 0.1;
   land3.position.z = -724 + 488.5;
   land3.rotateY((Math.PI * 3) / 2);
   land3.scale.x = 1560;
@@ -244,7 +184,7 @@ loader.load("./new_assets/bundaran_quarter.glb", function (gltf) {
     }
   });
   land4.position.x = -723 + 959;
-  land4.position.y = 1;
+  land4.position.y = 0.1;
   land4.position.z = 235 + 488.5;
   land4.scale.x = 1560;
   land4.scale.y = 10;
@@ -254,25 +194,23 @@ loader.load("./new_assets/bundaran_quarter.glb", function (gltf) {
 });
 //#endregion
 let lamp;
-loader.load("./new_assets/victorian_street_lamp.glb", function (gltf) {
+loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp = gltf.scene;
   lamp.traverse(function (node) {
     if (node.isMesh) {
-      // alert(node.castShadow);
       node.castShadow = true;
-      // alert(node.castShadow);
     }
   });
   lamp.position.x = 325;
   lamp.position.y = 0;
   lamp.position.z = 0;
-  lamp.scale.x = 0.07;
-  lamp.scale.y = 0.07;
-  lamp.scale.z = 0.07;
+  lamp.scale.x = 2;
+  lamp.scale.y = 2;
+  lamp.scale.z = 2;
   scene.add(lamp);
 });
 let lamp2;
-loader.load("./new_assets/victorian_street_lamp.glb", function (gltf) {
+loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp2 = gltf.scene;
   lamp2.traverse(function (node) {
     if (node.isMesh) {
@@ -282,13 +220,14 @@ loader.load("./new_assets/victorian_street_lamp.glb", function (gltf) {
   lamp2.position.x = -325;
   lamp2.position.y = 0;
   lamp2.position.z = 0;
-  lamp2.scale.x = 0.07;
-  lamp2.scale.y = 0.07;
-  lamp2.scale.z = 0.07;
+  lamp2.rotateY(Math.PI);
+  lamp2.scale.x = 2;
+  lamp2.scale.y = 2;
+  lamp2.scale.z = 2;
   scene.add(lamp2);
 });
 let lamp3;
-loader.load("./new_assets/victorian_street_lamp.glb", function (gltf) {
+loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp3 = gltf.scene;
   lamp3.traverse(function (node) {
     if (node.isMesh) {
@@ -298,22 +237,27 @@ loader.load("./new_assets/victorian_street_lamp.glb", function (gltf) {
   lamp3.position.x = 0;
   lamp3.position.y = 0;
   lamp3.position.z = 325;
-  lamp3.scale.x = 0.07;
-  lamp3.scale.y = 0.07;
-  lamp3.scale.z = 0.07;
+  lamp3.rotateY(-Math.PI * 0.5);
+  lamp3.scale.x = 2;
+  lamp3.scale.y = 2;
+  lamp3.scale.z = 2;
   scene.add(lamp3);
 });
 let lamp4;
-loader.load("./new_assets/victorian_street_lamp.glb", function (gltf) {
+loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp4 = gltf.scene;
-  lamp4.receiveShadow = true;
-  lamp4.castShadow = true;
+  lamp4.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+    }
+  });
   lamp4.position.x = 0;
   lamp4.position.y = 0;
   lamp4.position.z = -325;
-  lamp4.scale.x = 0.07;
-  lamp4.scale.y = 0.07;
-  lamp4.scale.z = 0.07;
+  lamp4.rotateY(Math.PI * 0.5);
+  lamp4.scale.x = 2;
+  lamp4.scale.y = 2;
+  lamp4.scale.z = 2;
   scene.add(lamp4);
 });
 const texture = new THREE.TextureLoader().load(
@@ -330,14 +274,21 @@ texturePave.wrapT = THREE.RepeatWrapping;
 texturePave.repeat.set(32, 32);
 // immediately use the texture for material creation
 
-const material = new THREE.MeshPhongMaterial({ map: texture });
-const geometry = new THREE.CylinderGeometry(150, 150, 2, 32);
+const material = new THREE.MeshPhongMaterial({
+  map: texture,
+  bumpMap: texture,
+  bumpScale: 2,
+});
+const geometry = new THREE.CylinderGeometry(150, 150, 0.01, 32);
 const cylinder = new THREE.Mesh(geometry, material);
 cylinder.receiveShadow = true;
 cylinder.position.set(0, 0, 0);
 scene.add(cylinder);
-const material2 = new THREE.MeshPhongMaterial({ map: texturePave });
-const geometry2 = new THREE.CylinderGeometry(400, 400, 1, 32);
+const material2 = new THREE.MeshPhongMaterial({
+  map: texturePave,
+  bumpMap: texturePave,
+});
+const geometry2 = new THREE.CylinderGeometry(400, 400, 0, 32);
 const cylinder2 = new THREE.Mesh(geometry2, material2);
 cylinder2.receiveShadow = true;
 cylinder2.castShadow = false;
@@ -358,7 +309,6 @@ loader.load("./new_assets/arc_de_triomphe_phong.glb", function (gltf) {
   arcdetriomphe.scale.x = 5;
   arcdetriomphe.scale.y = 5;
   arcdetriomphe.scale.z = 5;
-
   scene.add(arcdetriomphe);
 });
 
