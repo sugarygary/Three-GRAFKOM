@@ -39,6 +39,12 @@ scene.add(pointLightbHelper);
 //#endregion
 
 //#region lampu 1
+const pointLightLamp1 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
+pointLightLamp1.position.set(0, 77, -316);
+pointLightLamp1.castShadow = true;
+scene.add(pointLightLamp1);
+let pointLightHelperLamp1 = new THREE.PointLightHelper(pointLightLamp1, 5);
+scene.add(pointLightHelperLamp1);
 
 // lampu 2
 const pointLightLamp2 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
@@ -48,10 +54,21 @@ scene.add(pointLightLamp2);
 let pointLightHelperLamp2 = new THREE.PointLightHelper(pointLightLamp2, 5);
 scene.add(pointLightHelperLamp2);
 
-// Lampu 2
+// Lampu 3
+const pointLightLamp3 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
+pointLightLamp3.position.set(317, 77, 0);
+pointLightLamp3.castShadow = true;
+scene.add(pointLightLamp3);
+let pointLightHelperLamp3 = new THREE.PointLightHelper(pointLightLamp3, 5);
+scene.add(pointLightHelperLamp3);
 
 // Lampu 4
-
+const pointLightLamp4 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
+pointLightLamp4.position.set(0, 77, 316);
+pointLightLamp4.castShadow = true;
+scene.add(pointLightLamp4);
+let pointLightHelperLamp4 = new THREE.PointLightHelper(pointLightLamp4, 5);
+scene.add(pointLightHelperLamp4);
 //#endregion
 
 const upColour = 0x717e8e;
@@ -71,8 +88,11 @@ var materialSphere = new THREE.MeshStandardMaterial({
 });
 const sphere = new THREE.Mesh(geometrySphere, materialSphere);
 sphere.position.set(0, 5, 0);
+const sphere2 = new THREE.Mesh(geometrySphere, materialSphere);
+sphere2.position.set(0, 5, 0);
 
 scene.add(sphere);
+scene.add(sphere2);
 let mobil;
 loader.load("./new_assets/scene (1).glb", function (gltf) {
   mobil = gltf.scene;
@@ -90,6 +110,25 @@ loader.load("./new_assets/scene (1).glb", function (gltf) {
   mobil.scale.z = 0.2;
   sphere.add(mobil);
 });
+
+let pesawat;
+loader.load("./new_assets/supermarine_spitfire.glb", function (gltf) {
+  pesawat = gltf.scene;
+  // mobil.traverse(function (node) {
+  //   if (node.isMesh) {
+  //     node.castShadow = true;
+  //     node.receiveShadow = true;
+  //   }
+  // });
+  pesawat.position.x = 400;
+  pesawat.position.y = 500;
+  pesawat.position.z = 0;
+  pesawat.scale.x = 0.4;
+  pesawat.scale.y = 0.4;
+  pesawat.scale.z = 0.4;
+  sphere2.add(pesawat);
+});
+
 const spotLight = new THREE.SpotLight(
   0xffece0,
   20,
@@ -387,6 +426,7 @@ function drawScene() {
   // directionalLight.position.set(cam,, 30, 0);
   let delta = clock.getDelta();
   sphere.rotateY(-0.01);
+  sphere2.rotateY(-0.015);
   processKeyboard(delta);
   controls.lock();
   displayCoordinate.innerHTML =
