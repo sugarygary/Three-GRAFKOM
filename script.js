@@ -14,7 +14,7 @@ renderer.gammaOutput = true;
 renderer.gammaFactor = 2;
 
 const cubeloader = new THREE.CubeTextureLoader();
-cubeloader.setPath("night-skyboxes/HornstullsStrand/");
+cubeloader.setPath("night-skyboxes/Vindelalven/");
 const backgroundTexture = cubeloader.load([
   "posx.jpg",
   "negx.jpg",
@@ -120,7 +120,7 @@ loader.load("./new_assets/supermarine_spitfire.glb", function (gltf) {
   //     node.receiveShadow = true;
   //   }
   // });
-  pesawat.position.x = 400;
+  pesawat.position.x = 500;
   pesawat.position.y = 500;
   pesawat.position.z = 0;
   pesawat.scale.x = 0.4;
@@ -336,11 +336,6 @@ scene.add(cylinder2);
 let arcdetriomphe;
 loader.load("./new_assets/arc_de_triomphe_phong.glb", function (gltf) {
   arcdetriomphe = gltf.scene;
-  arcdetriomphe.traverse(function (node) {
-    if (node.isMesh) {
-      node.castShadow = true;
-    }
-  });
   arcdetriomphe.position.x = -23;
   arcdetriomphe.position.y = -6;
   arcdetriomphe.position.z = -5;
@@ -348,9 +343,86 @@ loader.load("./new_assets/arc_de_triomphe_phong.glb", function (gltf) {
   arcdetriomphe.scale.x = 5;
   arcdetriomphe.scale.y = 5;
   arcdetriomphe.scale.z = 5;
+  arcdetriomphe.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+    }
+  });
   scene.add(arcdetriomphe);
 });
+let gedung;
+loader.load("./new_assets/buildings_front_1.glb", function (gltf) {
+  gedung = gltf.scene;
 
+  gedung.position.x = 370;
+  gedung.position.y = 125;
+  gedung.position.z = -5;
+  gedung.rotateY(-0.2);
+  gedung.scale.x = 500;
+  gedung.scale.y = 500;
+  gedung.scale.z = 500;
+  gedung.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  scene.add(gedung);
+});
+let gedung2;
+loader.load("./new_assets/buildings_front_2.glb", function (gltf) {
+  gedung2 = gltf.scene;
+  gedung2.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung2.position.x = 470;
+  gedung2.position.y = 125;
+  gedung2.position.z = 9;
+  gedung2.rotateY(-0.725);
+  gedung2.scale.x = 500;
+  gedung2.scale.y = 500;
+  gedung2.scale.z = 500;
+  scene.add(gedung2);
+});
+let gedung3;
+loader.load("./new_assets/buildings_front_3.glb", function (gltf) {
+  gedung3 = gltf.scene;
+  gedung3.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung3.position.x = 620;
+  gedung3.position.y = 125;
+  gedung3.position.z = 175;
+  gedung3.rotateY(-1.232);
+  gedung3.scale.x = 400;
+  gedung3.scale.y = 500;
+  gedung3.scale.z = 500;
+  scene.add(gedung3);
+});
+let gedung4;
+loader.load("./new_assets/buildings_front_4.glb", function (gltf) {
+  gedung4 = gltf.scene;
+  gedung4.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung4.position.x = 695;
+  gedung4.position.y = 125;
+  gedung4.position.z = 420;
+  gedung4.rotateY(-1.62);
+  gedung4.scale.x = 500;
+  gedung4.scale.y = 500;
+  gedung4.scale.z = 500;
+  scene.add(gedung4);
+});
 const controls = new PointerLockControls(cam, renderer.domElement);
 let clock = new THREE.Clock();
 const boxGeometry = new THREE.BoxGeometry();
@@ -417,6 +489,9 @@ function processKeyboard(delta) {
     cam.translateY(actualSpeed);
     // }
   }
+  // if (cam.position.y > 120) {
+  //   cam.position.y = 120;
+  // }
 }
 
 let timer = 0;
