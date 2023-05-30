@@ -365,7 +365,7 @@ scene.add(cylinder2);
 let arcdetriomphe;
 loader.load("./new_assets/arc_de_triomphe_phong.glb", function (gltf) {
   arcdetriomphe = gltf.scene;
-  arcdetriomphe.position.x = -23;
+  arcdetriomphe.position.x = -25;
   arcdetriomphe.position.y = -6;
   arcdetriomphe.position.z = -5;
   arcdetriomphe.rotateY(0.319);
@@ -562,6 +562,63 @@ loader.load("./new_assets/bourges_corner_shop_1_france.glb", function (gltf) {
   gedung10.scale.z = 15;
   scene.add(gedung10);
 });
+let gedung11;
+loader.load(
+  "./new_assets/chatelaudren_filler_shop_1_france.glb",
+  function (gltf) {
+    gedung11 = gltf.scene;
+    gedung11.traverse(function (node) {
+      if (node.isMesh) {
+        node.castShadow = true;
+        node.receiveShadow = true;
+      }
+    });
+    gedung11.position.x = -405;
+    gedung11.position.y = 0;
+    gedung11.position.z = -292;
+    gedung11.rotateY(0.95);
+    gedung11.scale.x = 15;
+    gedung11.scale.y = 15;
+    gedung11.scale.z = 15;
+    scene.add(gedung11);
+  }
+);
+let gedung12;
+loader.load("./new_assets/rouen_house_1_france.glb", function (gltf) {
+  gedung12 = gltf.scene;
+  gedung12.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung12.position.x = -327;
+  gedung12.position.y = 0;
+  gedung12.position.z = -394;
+  gedung12.rotateY(0.67);
+  gedung12.scale.x = 15;
+  gedung12.scale.y = 15;
+  gedung12.scale.z = 15;
+  scene.add(gedung12);
+});
+let gedung13;
+loader.load("./new_assets/le_mans_filler_house_1.glb", function (gltf) {
+  gedung13 = gltf.scene;
+  gedung13.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung13.position.x = -197;
+  gedung13.position.y = 0;
+  gedung13.position.z = -392;
+  gedung13.rotateY(0.475);
+  gedung13.scale.x = 15;
+  gedung13.scale.y = 15;
+  gedung13.scale.z = 15;
+  scene.add(gedung13);
+});
 
 const controls = new PointerLockControls(cam, renderer.domElement);
 let clock = new THREE.Clock();
@@ -654,12 +711,11 @@ function processKeyboard(delta) {
     const element = boxes[i];
     if (element.containsPoint(cam.position)) {
       collision = true;
+      break;
     }
   }
   if (collision) {
     cam.position.set(originX, originY, originZ);
-  } else {
-    displayCoordinate.innerHTML = "";
   }
 }
 
