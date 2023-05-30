@@ -448,36 +448,36 @@ let displayCoordinate = document.getElementById("coor");
 function processKeyboard(delta) {
   let speed = 100;
   let actualSpeed = speed * delta;
-  if (keyboard["w"]) {
-    // if (
-    //   cam.position.z > -250 &&
-    //   cam.position.z < 250 &&
-    //   cam.position.x > -200 &&
-    //   cam.position.x < 200
-    // ) {
-    controls.moveForward(actualSpeed);
-    // }
-  }
-  if (keyboard["a"]) {
-    // if (cam.position.x > -200) {
-    controls.moveRight(-actualSpeed);
-    // }
-  }
-  if (keyboard["s"]) {
-    // if (
-    //   cam.position.z > -250 &&
-    //   cam.position.z < 250 &&
-    //   cam.position.x > -200 &&
-    //   cam.position.x < 200
-    // ) {
-    controls.moveForward(-actualSpeed);
-    // }
-  }
-  if (keyboard["d"]) {
-    // if (cam.position.x < 200) {
-    controls.moveRight(actualSpeed);
-    // }
-  }
+  // if (keyboard["w"]) {
+  //   // if (
+  //   //   cam.position.z > -250 &&
+  //   //   cam.position.z < 250 &&
+  //   //   cam.position.x > -200 &&
+  //   //   cam.position.x < 200
+  //   // ) {
+  //   controls.moveForward(actualSpeed);
+  //   // }
+  // }
+  // if (keyboard["a"]) {
+  //   // if (cam.position.x > -200) {
+  //   controls.moveRight(-actualSpeed);
+  //   // }
+  // }
+  // if (keyboard["s"]) {
+  // if (
+  //   cam.position.z > -250 &&
+  //   cam.position.z < 250 &&
+  //   cam.position.x > -200 &&
+  //   cam.position.x < 200
+  // ) {
+  // controls.moveForward(-actualSpeed);
+  // }
+  // }
+  // if (keyboard["d"]) {
+  // if (cam.position.x < 200) {
+  // controls.moveRight(actualSpeed);
+  // }
+  // }
   if (keyboard["Control"]) {
     // console.log(cam.position.y)
     if (cam.position.y > 0) {
@@ -492,6 +492,20 @@ function processKeyboard(delta) {
   // if (cam.position.y > 120) {
   //   cam.position.y = 120;
   // }
+
+  // if arrow pressed
+  if (keyboard["ArrowUp"]) {
+    controls.moveForward(actualSpeed);
+  }
+  if (keyboard["ArrowLeft"]) {
+    controls.moveRight(-actualSpeed);
+  }
+  if (keyboard["ArrowDown"]) {
+    controls.moveForward(-actualSpeed);
+  }
+  if (keyboard["ArrowRight"]) {
+    controls.moveRight(actualSpeed);
+  }
 }
 
 let timer = 0;
