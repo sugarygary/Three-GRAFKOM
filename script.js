@@ -236,17 +236,24 @@ loader.load("./new_assets/bundaran_quarter.glb", function (gltf) {
 let lamp;
 loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp = gltf.scene;
-  lamp.traverse(function (node) {
-    if (node.isMesh) {
-      node.castShadow = true;
-    }
-  });
   lamp.position.x = 325;
   lamp.position.y = 0;
   lamp.position.z = 0;
   lamp.scale.x = 2;
   lamp.scale.y = 2;
   lamp.scale.z = 2;
+  gltf.scene.updateMatrixWorld(true);
+  lamp.traverse(function (node) {
+    if (node.isMesh) {
+      let box = new THREE.Box3();
+      node.castShadow = true;
+      node.geometry.computeBoundingBox();
+      box.copy(node.geometry.boundingBox).applyMatrix4(node.matrixWorld);
+      boxes.push(box);
+      const helper = new THREE.Box3Helper(box, 0xffff00);
+      scene.add(helper);
+    }
+  });
   scene.add(lamp);
 });
 let lamp2;
@@ -276,11 +283,6 @@ loader.load("./new_assets/street_lamp.glb", function (gltf) {
 let lamp3;
 loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp3 = gltf.scene;
-  lamp3.traverse(function (node) {
-    if (node.isMesh) {
-      node.castShadow = true;
-    }
-  });
   lamp3.position.x = 0;
   lamp3.position.y = 0;
   lamp3.position.z = 325;
@@ -288,16 +290,23 @@ loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp3.scale.x = 2;
   lamp3.scale.y = 2;
   lamp3.scale.z = 2;
+  gltf.scene.updateMatrixWorld(true);
+  lamp3.traverse(function (node) {
+    if (node.isMesh) {
+      let box = new THREE.Box3();
+      node.castShadow = true;
+      node.geometry.computeBoundingBox();
+      box.copy(node.geometry.boundingBox).applyMatrix4(node.matrixWorld);
+      boxes.push(box);
+      const helper = new THREE.Box3Helper(box, 0xffff00);
+      scene.add(helper);
+    }
+  });
   scene.add(lamp3);
 });
 let lamp4;
 loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp4 = gltf.scene;
-  lamp4.traverse(function (node) {
-    if (node.isMesh) {
-      node.castShadow = true;
-    }
-  });
   lamp4.position.x = 0;
   lamp4.position.y = 0;
   lamp4.position.z = -325;
@@ -305,6 +314,18 @@ loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp4.scale.x = 2;
   lamp4.scale.y = 2;
   lamp4.scale.z = 2;
+  gltf.scene.updateMatrixWorld(true);
+  lamp4.traverse(function (node) {
+    if (node.isMesh) {
+      let box = new THREE.Box3();
+      node.castShadow = true;
+      node.geometry.computeBoundingBox();
+      box.copy(node.geometry.boundingBox).applyMatrix4(node.matrixWorld);
+      boxes.push(box);
+      const helper = new THREE.Box3Helper(box, 0xffff00);
+      scene.add(helper);
+    }
+  });
   scene.add(lamp4);
 });
 const texture = new THREE.TextureLoader().load(
@@ -442,7 +463,7 @@ loader.load("./new_assets/guingamp_shop_1_france.glb", function (gltf) {
     }
   });
   gedung5.position.x = -152;
-  gedung5.position.y = 1;
+  gedung5.position.y = 0;
   gedung5.position.z = 410;
   gedung5.rotateY(40.5);
   gedung5.scale.x = 15;
@@ -460,14 +481,86 @@ loader.load("./new_assets/nivelles_house_9_belgium.glb", function (gltf) {
       node.receiveShadow = true;
     }
   });
-  gedung6.position.x = -335;
-  gedung6.position.y = 2;
-  gedung6.position.z = 365;
+  gedung6.position.x = -336;
+  gedung6.position.y = 0;
+  gedung6.position.z = 369;
   gedung6.rotateY(2.5);
   gedung6.scale.x = 15;
-  gedung6.scale.y = 15;
+  gedung6.scale.y = 12;
   gedung6.scale.z = 15;
   scene.add(gedung6);
+});
+let gedung7;
+loader.load("./new_assets/bordeaux_flat_1_corner_france.glb", function (gltf) {
+  gedung7 = gltf.scene;
+  gedung7.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung7.position.x = -376;
+  gedung7.position.y = 0;
+  gedung7.position.z = 328;
+  gedung7.rotateY(2.2);
+  gedung7.scale.x = 15;
+  gedung7.scale.y = 12;
+  gedung7.scale.z = 15;
+  scene.add(gedung7);
+});
+let gedung8;
+loader.load("./new_assets/angers_shop_2_france.glb", function (gltf) {
+  gedung8 = gltf.scene;
+  gedung8.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung8.position.x = -462;
+  gedung8.position.y = 0;
+  gedung8.position.z = 183;
+  gedung8.rotateY(1.86);
+  gedung8.scale.x = 15;
+  gedung8.scale.y = 15;
+  gedung8.scale.z = 15;
+  scene.add(gedung8);
+});
+let gedung9;
+loader.load("./new_assets/laval_shop_1_france.glb", function (gltf) {
+  gedung9 = gltf.scene;
+  gedung9.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung9.position.x = -497;
+  gedung9.position.y = 0;
+  gedung9.position.z = -25;
+  gedung9.rotateY(1.52);
+  gedung9.scale.x = 15;
+  gedung9.scale.y = 15;
+  gedung9.scale.z = 15;
+  scene.add(gedung9);
+});
+let gedung10;
+loader.load("./new_assets/bourges_corner_shop_1_france.glb", function (gltf) {
+  gedung10 = gltf.scene;
+  gedung10.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung10.position.x = -485;
+  gedung10.position.y = 0;
+  gedung10.position.z = -122;
+  gedung10.rotateY(1.24);
+  gedung10.scale.x = 15;
+  gedung10.scale.y = 15;
+  gedung10.scale.z = 15;
+  scene.add(gedung10);
 });
 
 const controls = new PointerLockControls(cam, renderer.domElement);
@@ -514,19 +607,19 @@ function processKeyboard(delta) {
     // }
   }
   if (keyboard["s"]) {
-  // if (
-  //   cam.position.z > -250 &&
-  //   cam.position.z < 250 &&
-  //   cam.position.x > -200 &&
-  //   cam.position.x < 200
-  // ) {
-  controls.moveForward(-actualSpeed);
-  //}
+    // if (
+    //   cam.position.z > -250 &&
+    //   cam.position.z < 250 &&
+    //   cam.position.x > -200 &&
+    //   cam.position.x < 200
+    // ) {
+    controls.moveForward(-actualSpeed);
+    //}
   }
   if (keyboard["d"]) {
-  if (cam.position.x < 200) {
-  controls.moveRight(actualSpeed);
-  }
+    // if (cam.position.x < 200) {
+    controls.moveRight(actualSpeed);
+    // }
   }
   if (keyboard["Control"]) {
     // console.log(cam.position.y)
