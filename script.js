@@ -140,7 +140,7 @@ const spotLight = new THREE.SpotLight(
 );
 // spotLight.castShadow = true;
 spotLight.position.set(173, 2, 13);
-spotLight.target.position.set(171, 1, 31);
+spotLight.target.position.set(171, -2, 31);
 sphere.add(spotLight.target);
 sphere.add(spotLight);
 const spotLight2 = new THREE.SpotLight(
@@ -153,7 +153,7 @@ const spotLight2 = new THREE.SpotLight(
 );
 // spotLight2.castShadow = true;
 spotLight2.position.set(183, 2, 13);
-spotLight2.target.position.set(184, 1, 31);
+spotLight2.target.position.set(184, -2, 31);
 sphere.add(spotLight2.target);
 sphere.add(spotLight2);
 
