@@ -3,6 +3,7 @@ import { PointerLockControls } from "three/addons/controls/PointerLockControls.j
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
+var boxes = [];
 var scene = new THREE.Scene();
 var cam = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 1, 1000);
 var renderer = new THREE.WebGL1Renderer({ antialias: true });
@@ -251,11 +252,6 @@ loader.load("./new_assets/street_lamp.glb", function (gltf) {
 let lamp2;
 loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp2 = gltf.scene;
-  lamp2.traverse(function (node) {
-    if (node.isMesh) {
-      node.castShadow = true;
-    }
-  });
   lamp2.position.x = -325;
   lamp2.position.y = 0;
   lamp2.position.z = 0;
@@ -263,6 +259,18 @@ loader.load("./new_assets/street_lamp.glb", function (gltf) {
   lamp2.scale.x = 2;
   lamp2.scale.y = 2;
   lamp2.scale.z = 2;
+  gltf.scene.updateMatrixWorld(true);
+  lamp2.traverse(function (node) {
+    if (node.isMesh) {
+      let box = new THREE.Box3();
+      node.castShadow = true;
+      node.geometry.computeBoundingBox();
+      box.copy(node.geometry.boundingBox).applyMatrix4(node.matrixWorld);
+      boxes.push(box);
+      const helper = new THREE.Box3Helper(box, 0xffff00);
+      scene.add(helper);
+    }
+  });
   scene.add(lamp2);
 });
 let lamp3;
@@ -447,6 +455,9 @@ addEventListener("keyup", (e) => {
 let displayCoordinate = document.getElementById("coor");
 function processKeyboard(delta) {
   let speed = 100;
+  let originX = cam.position.x;
+  let originY = cam.position.y;
+  let originZ = cam.position.z;
   let actualSpeed = speed * delta;
   // if (keyboard["w"]) {
   //   // if (
@@ -505,6 +516,18 @@ function processKeyboard(delta) {
   }
   if (keyboard["ArrowRight"]) {
     controls.moveRight(actualSpeed);
+  }
+  let collision = false;
+  for (let i = 0; i < boxes.length; i++) {
+    const element = boxes[i];
+    if (element.containsPoint(cam.position)) {
+      collision = true;
+    }
+  }
+  if (collision) {
+    cam.position.set(originX, originY, originZ);
+  } else {
+    displayCoordinate.innerHTML = "";
   }
 }
 
