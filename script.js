@@ -451,6 +451,25 @@ loader.load("./new_assets/guingamp_shop_1_france.glb", function (gltf) {
   scene.add(gedung5);
 });
 
+let gedung6;
+loader.load("./new_assets/nivelles_house_9_belgium.glb", function (gltf) {
+  gedung6 = gltf.scene;
+  gedung6.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung6.position.x = -335;
+  gedung6.position.y = 2;
+  gedung6.position.z = 365;
+  gedung6.rotateY(2.5);
+  gedung6.scale.x = 15;
+  gedung6.scale.y = 15;
+  gedung6.scale.z = 15;
+  scene.add(gedung6);
+});
+
 const controls = new PointerLockControls(cam, renderer.domElement);
 let clock = new THREE.Clock();
 const boxGeometry = new THREE.BoxGeometry();
@@ -479,36 +498,36 @@ function processKeyboard(delta) {
   let originY = cam.position.y;
   let originZ = cam.position.z;
   let actualSpeed = speed * delta;
-  // if (keyboard["w"]) {
-  //   // if (
-  //   //   cam.position.z > -250 &&
-  //   //   cam.position.z < 250 &&
-  //   //   cam.position.x > -200 &&
-  //   //   cam.position.x < 200
-  //   // ) {
-  //   controls.moveForward(actualSpeed);
-  //   // }
-  // }
-  // if (keyboard["a"]) {
-  //   // if (cam.position.x > -200) {
-  //   controls.moveRight(-actualSpeed);
-  //   // }
-  // }
-  // if (keyboard["s"]) {
+  if (keyboard["w"]) {
+    // if (
+    //   cam.position.z > -250 &&
+    //   cam.position.z < 250 &&
+    //   cam.position.x > -200 &&
+    //   cam.position.x < 200
+    // ) {
+    controls.moveForward(actualSpeed);
+    // }
+  }
+  if (keyboard["a"]) {
+    // if (cam.position.x > -200) {
+    controls.moveRight(-actualSpeed);
+    // }
+  }
+  if (keyboard["s"]) {
   // if (
   //   cam.position.z > -250 &&
   //   cam.position.z < 250 &&
   //   cam.position.x > -200 &&
   //   cam.position.x < 200
   // ) {
-  // controls.moveForward(-actualSpeed);
-  // }
-  // }
-  // if (keyboard["d"]) {
-  // if (cam.position.x < 200) {
-  // controls.moveRight(actualSpeed);
-  // }
-  // }
+  controls.moveForward(-actualSpeed);
+  //}
+  }
+  if (keyboard["d"]) {
+  if (cam.position.x < 200) {
+  controls.moveRight(actualSpeed);
+  }
+  }
   if (keyboard["Control"]) {
     // console.log(cam.position.y)
     if (cam.position.y > 0) {
