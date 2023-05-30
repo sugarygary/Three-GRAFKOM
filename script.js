@@ -311,7 +311,7 @@ const texture = new THREE.TextureLoader().load(
   "new_assets/0d74be130bab1bdcb4857be2d6fb79ee.jpg"
 );
 const texturePave = new THREE.TextureLoader().load(
-  "new_assets/arched-cobblestone-pavement-texture-cobblestone-pavement-street-arched-pattern-seamless-tileable-repeating-square-d-rendering-112522272.jpg"
+  "new_assets/bricks_street.jpg"
 );
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
@@ -431,6 +431,26 @@ loader.load("./new_assets/buildings_front_4.glb", function (gltf) {
   gedung4.scale.z = 500;
   scene.add(gedung4);
 });
+
+let gedung5;
+loader.load("./new_assets/guingamp_shop_1_france.glb", function (gltf) {
+  gedung5 = gltf.scene;
+  gedung5.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung5.position.x = -152;
+  gedung5.position.y = 1;
+  gedung5.position.z = 410;
+  gedung5.rotateY(40.5);
+  gedung5.scale.x = 15;
+  gedung5.scale.y = 15;
+  gedung5.scale.z = 15;
+  scene.add(gedung5);
+});
+
 const controls = new PointerLockControls(cam, renderer.domElement);
 let clock = new THREE.Clock();
 const boxGeometry = new THREE.BoxGeometry();
