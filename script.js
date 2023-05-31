@@ -618,6 +618,150 @@ loader.load("./new_assets/le_mans_filler_house_1.glb", function (gltf) {
   gedung13.scale.z = 15;
   scene.add(gedung13);
 });
+let gedung14;
+loader.load("./new_assets/troyes_filler_house_1_france.glb", function (gltf) {
+  gedung14 = gltf.scene;
+  gedung14.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung14.position.x = -649;
+  gedung14.position.y = 0;
+  gedung14.position.z = -320;
+  gedung14.rotateY(0.3);
+  gedung14.scale.x = 15;
+  gedung14.scale.y = 15;
+  gedung14.scale.z = 15;
+  scene.add(gedung14);
+});
+let gedung15;
+loader.load("./new_assets/dijon_house_1_france.glb", function (gltf) {
+  gedung15 = gltf.scene;
+  gedung15.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung15.position.x = -39;
+  gedung15.position.y = 0;
+  gedung15.position.z = -495;
+  gedung15.rotateY(0.1);
+  gedung15.scale.x = 15;
+  gedung15.scale.y = 13;
+  gedung15.scale.z = 15;
+  scene.add(gedung15);
+});
+let gedung16;
+loader.load("./new_assets/fumay_house_1_france.glb", function (gltf) {
+  gedung16 = gltf.scene;
+  gedung16.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung16.position.x = 102;
+  gedung16.position.y = 0;
+  gedung16.position.z = -442;
+  gedung16.rotateY(-0.22);
+  gedung16.scale.x = 15;
+  gedung16.scale.y = 15;
+  gedung16.scale.z = 15;
+  scene.add(gedung16);
+});
+let gedung17;
+loader.load("./new_assets/troyes_shop_2_france.glb", function (gltf) {
+  gedung17 = gltf.scene;
+  gedung17.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung17.position.x = 218;
+  gedung17.position.y = 0;
+  gedung17.position.z = -445;
+  gedung17.rotateY(-0.41);
+  gedung17.scale.x = 15;
+  gedung17.scale.y = 15;
+  gedung17.scale.z = 15;
+  scene.add(gedung17);
+});
+let gedung18;
+loader.load("./new_assets/dijon_shop_1_france.glb", function (gltf) {
+  gedung18 = gltf.scene;
+  gedung18.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung18.position.x = 347;
+  gedung18.position.y = 0;
+  gedung18.position.z = -354;
+  gedung18.rotateY(-0.8);
+  gedung18.scale.x = 15;
+  gedung18.scale.y = 15;
+  gedung18.scale.z = 15;
+  scene.add(gedung18);
+});
+let gedung19;
+loader.load("./new_assets/troyes_shop_3_france.glb", function (gltf) {
+  gedung19 = gltf.scene;
+  gedung19.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung19.position.x = 160;
+  gedung19.position.y = 0;
+  gedung19.position.z = -784;
+  gedung19.rotateY(-1.1);
+  gedung19.scale.x = 15;
+  gedung19.scale.y = 15;
+  gedung19.scale.z = 15;
+  scene.add(gedung19);
+});
+let gedung20;
+loader.load("./new_assets/troyes_shop_5_france.glb", function (gltf) {
+  gedung20 = gltf.scene;
+  gedung20.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung20.position.x = 515;
+  gedung20.position.y = 0;
+  gedung20.position.z = 18;
+  gedung20.rotateY(-1.36);
+  gedung20.scale.x = 15;
+  gedung20.scale.y = 15;
+  gedung20.scale.z = 15;
+  scene.add(gedung20);
+});
+let gedung21;
+loader.load("./new_assets/le_mans_filler_house_1.glb", function (gltf) {
+  gedung21 = gltf.scene;
+  gedung21.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  gedung21.position.x = 440;
+  gedung21.position.y = 0;
+  gedung21.position.z = -24.8;
+  gedung21.rotateY(-1.55);
+  gedung21.scale.x = 15.5;
+  gedung21.scale.y = 15;
+  gedung21.scale.z = 15;
+  scene.add(gedung21);
+});
 
 const controls = new PointerLockControls(cam, renderer.domElement);
 let clock = new THREE.Clock();
