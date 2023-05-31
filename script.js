@@ -382,7 +382,6 @@ loader.load("./new_assets/arc_de_triomphe_phong.glb", function (gltf) {
 let gedung;
 loader.load("./new_assets/buildings_front_1.glb", function (gltf) {
   gedung = gltf.scene;
-
   gedung.position.x = 370;
   gedung.position.y = 125;
   gedung.position.z = -5;
@@ -649,38 +648,19 @@ function processKeyboard(delta) {
   let originZ = cam.position.z;
   let actualSpeed = speed * delta;
   if (keyboard["w"]) {
-    // if (
-    //   cam.position.z > -250 &&
-    //   cam.position.z < 250 &&
-    //   cam.position.x > -200 &&
-    //   cam.position.x < 200
-    // ) {
     controls.moveForward(actualSpeed);
-    // }
   }
   if (keyboard["a"]) {
-    // if (cam.position.x > -200) {
     controls.moveRight(-actualSpeed);
-    // }
   }
   if (keyboard["s"]) {
-    // if (
-    //   cam.position.z > -250 &&
-    //   cam.position.z < 250 &&
-    //   cam.position.x > -200 &&
-    //   cam.position.x < 200
-    // ) {
     controls.moveForward(-actualSpeed);
-    //}
   }
   if (keyboard["d"]) {
-    // if (cam.position.x < 200) {
     controls.moveRight(actualSpeed);
-    // }
   }
   if (keyboard["Control"]) {
-    // console.log(cam.position.y)
-    if (cam.position.y > 0) {
+    if (cam.position.y > 11) {
       cam.translateY(-actualSpeed);
     }
   }
@@ -707,7 +687,18 @@ function processKeyboard(delta) {
     controls.moveRight(actualSpeed);
   }
   let collision = false;
+  let d = Math.sqrt(
+    cam.position.x * 1.0 * cam.position.x +
+      cam.position.z * 1.0 * cam.position.z
+  );
+
+  if (d > 390) {
+    collision = true;
+  }
   for (let i = 0; i < boxes.length; i++) {
+    if (collision) {
+      break;
+    }
     const element = boxes[i];
     if (element.containsPoint(cam.position)) {
       collision = true;
