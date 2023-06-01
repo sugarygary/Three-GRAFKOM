@@ -104,11 +104,11 @@ loader.load("./new_assets/scene (1).glb", function (gltf) {
     }
   });
   mobil.position.x = 178;
-  mobil.position.y = -4;
+  mobil.position.y = -5.5;
   mobil.position.z = 0;
-  mobil.scale.x = 0.2;
-  mobil.scale.y = 0.2;
-  mobil.scale.z = 0.2;
+  mobil.scale.x = 0.28;
+  mobil.scale.y = 0.28;
+  mobil.scale.z = 0.28;
   sphere.add(mobil);
 });
 
@@ -782,6 +782,139 @@ loader.load("./new_assets/sam_low_poly.glb", function (gltf) {
   scene.add(orang);
 });
 
+let orang2;
+loader.load("./new_assets/assistant_-_guffy_girl.glb", function (gltf) {
+  orang2 = gltf.scene;
+  orang2.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang2.position.x = -29;
+  orang2.position.y = 0;
+  orang2.position.z = -66;
+  orang2.rotateY(-3);
+  orang2.scale.x = 13;
+  orang2.scale.y = 13;
+  orang2.scale.z = 13;
+  scene.add(orang2);
+});
+
+let orang3;
+loader.load("./new_assets/photographer_with_tripod1.glb", function (gltf) {
+  orang3 = gltf.scene;
+  orang3.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang3.position.x = -27;
+  orang3.position.y = -1;
+  orang3.position.z = -134;
+  orang3.scale.x = 12;
+  orang3.scale.y = 12;
+  orang3.scale.z = 12;
+  scene.add(orang3);
+});
+
+let orang4;
+loader.load("./new_assets/female_smokeing.glb", function (gltf) {
+  orang4 = gltf.scene;
+  orang4.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang4.position.x = 351;
+  orang4.position.y = 0;
+  orang4.position.z = -146;
+  orang4.rotateY(-1);
+  orang4.scale.x = 0.12;
+  orang4.scale.y = 0.12;
+  orang4.scale.z = 0.12;
+  scene.add(orang4);
+});
+
+let orang5;
+loader.load("./new_assets/dennis_posed_004_-_male_standing_business_model.glb", function (gltf) {
+  orang5 = gltf.scene;
+  orang5.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  //orang5.position.x = -305;
+  orang5.position.x = -35;
+  orang5.position.y = 0;
+  //orang5.position.z = 86;
+  orang5.position.z = -66;
+  orang5.rotateY(3.5);
+  orang5.scale.x = 0.12;
+  orang5.scale.y = 0.12;
+  orang5.scale.z = 0.12;
+  scene.add(orang5);
+});
+
+let orang6;
+loader.load("./new_assets/fabienne__percy_001_-_mother_and_child.glb", function (gltf) {
+  orang6 = gltf.scene;
+  orang6.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang6.position.x = 130;
+  orang6.position.y = 0;
+  orang6.position.z = 46;
+  orang6.scale.x = 0.12;
+  orang6.scale.y = 0.12;
+  orang6.scale.z = 0.12;
+  scene.add(orang6);
+});
+
+let orang7;
+loader.load("./new_assets/gumshoe_male.glb", function (gltf) {
+  orang7 = gltf.scene;
+  orang7.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang7.position.x = -305;
+  orang7.position.y = 0;
+  orang7.position.z = 86;
+  orang7.rotateY(2);
+  orang7.scale.x = 0.15;
+  orang7.scale.y = 0.15;
+  orang7.scale.z = 0.15;
+  scene.add(orang7);
+});
+
+let orang8;
+loader.load("./new_assets/assistant_-_night_out_outfit.glb", function (gltf) {
+  orang8 = gltf.scene;
+  orang8.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang8.position.x = -99;
+  orang8.position.y = 0;
+  orang8.position.z = 80;
+  orang8.rotateY(-1);
+  orang8.scale.x = 13;
+  orang8.scale.y = 13;
+  orang8.scale.z = 13;
+  scene.add(orang8);
+});
+
 let mobil2;
 loader.load("./new_assets/free_porsche_911_carrera_4s.glb", function (gltf) {
   mobil2 = gltf.scene;
@@ -795,9 +928,9 @@ loader.load("./new_assets/free_porsche_911_carrera_4s.glb", function (gltf) {
   mobil2.position.y = 8;
   mobil2.position.z = 266;
   mobil2.rotateY(-1.4);
-  mobil2.scale.x = 10;
-  mobil2.scale.y = 10;
-  mobil2.scale.z = 10;
+  mobil2.scale.x = 12;
+  mobil2.scale.y = 12;
+  mobil2.scale.z = 12;
   scene.add(mobil2);
 });
 
