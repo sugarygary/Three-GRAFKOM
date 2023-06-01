@@ -763,6 +763,44 @@ loader.load("./new_assets/le_mans_filler_house_1.glb", function (gltf) {
   scene.add(gedung21);
 });
 
+let orang;
+loader.load("./new_assets/sam_low_poly.glb", function (gltf) {
+  orang = gltf.scene;
+  orang.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang.position.x = 127;
+  orang.position.y = 15;
+  orang.position.z = 295;
+  orang.rotateY(-1.55);
+  orang.scale.x = 14;
+  orang.scale.y = 14;
+  orang.scale.z = 14;
+  scene.add(orang);
+});
+
+let mobil2;
+loader.load("./new_assets/free_porsche_911_carrera_4s.glb", function (gltf) {
+  mobil2 = gltf.scene;
+  mobil2.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  mobil2.position.x = 78;
+  mobil2.position.y = 8;
+  mobil2.position.z = 266;
+  mobil2.rotateY(-1.4);
+  mobil2.scale.x = 10;
+  mobil2.scale.y = 10;
+  mobil2.scale.z = 10;
+  scene.add(mobil2);
+});
+
 const controls = new PointerLockControls(cam, renderer.domElement);
 let clock = new THREE.Clock();
 const boxGeometry = new THREE.BoxGeometry();
