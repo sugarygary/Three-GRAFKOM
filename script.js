@@ -2,7 +2,8 @@ import * as THREE from "three";
 import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-
+import { FBXLoader } from "three/addons/loaders/FBXLoader";
+var mixer;
 var boxes = [];
 var scene = new THREE.Scene();
 var cam = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 1, 1000);
@@ -91,9 +92,12 @@ const sphere = new THREE.Mesh(geometrySphere, materialSphere);
 sphere.position.set(0, 5, 0);
 const sphere2 = new THREE.Mesh(geometrySphere, materialSphere);
 sphere2.position.set(0, 5, 0);
+const pivotWalk = new THREE.Mesh(geometrySphere, materialSphere);
+sphere2.position.set(0, 0, 0);
 
 scene.add(sphere);
 scene.add(sphere2);
+scene.add(pivotWalk);
 let mobil;
 loader.load("./new_assets/scene (1).glb", function (gltf) {
   mobil = gltf.scene;
@@ -839,43 +843,49 @@ loader.load("./new_assets/female_smokeing.glb", function (gltf) {
 });
 
 let orang5;
-loader.load("./new_assets/dennis_posed_004_-_male_standing_business_model.glb", function (gltf) {
-  orang5 = gltf.scene;
-  orang5.traverse(function (node) {
-    if (node.isMesh) {
-      node.castShadow = true;
-      node.receiveShadow = true;
-    }
-  });
-  //orang5.position.x = -305;
-  orang5.position.x = -35;
-  orang5.position.y = 0;
-  //orang5.position.z = 86;
-  orang5.position.z = -66;
-  orang5.rotateY(3.5);
-  orang5.scale.x = 0.12;
-  orang5.scale.y = 0.12;
-  orang5.scale.z = 0.12;
-  scene.add(orang5);
-});
+loader.load(
+  "./new_assets/dennis_posed_004_-_male_standing_business_model.glb",
+  function (gltf) {
+    orang5 = gltf.scene;
+    orang5.traverse(function (node) {
+      if (node.isMesh) {
+        node.castShadow = true;
+        node.receiveShadow = true;
+      }
+    });
+    //orang5.position.x = -305;
+    orang5.position.x = -35;
+    orang5.position.y = 0;
+    //orang5.position.z = 86;
+    orang5.position.z = -66;
+    orang5.rotateY(3.5);
+    orang5.scale.x = 0.12;
+    orang5.scale.y = 0.12;
+    orang5.scale.z = 0.12;
+    scene.add(orang5);
+  }
+);
 
 let orang6;
-loader.load("./new_assets/fabienne__percy_001_-_mother_and_child.glb", function (gltf) {
-  orang6 = gltf.scene;
-  orang6.traverse(function (node) {
-    if (node.isMesh) {
-      node.castShadow = true;
-      node.receiveShadow = true;
-    }
-  });
-  orang6.position.x = 130;
-  orang6.position.y = 0;
-  orang6.position.z = 46;
-  orang6.scale.x = 0.12;
-  orang6.scale.y = 0.12;
-  orang6.scale.z = 0.12;
-  scene.add(orang6);
-});
+loader.load(
+  "./new_assets/fabienne__percy_001_-_mother_and_child.glb",
+  function (gltf) {
+    orang6 = gltf.scene;
+    orang6.traverse(function (node) {
+      if (node.isMesh) {
+        node.castShadow = true;
+        node.receiveShadow = true;
+      }
+    });
+    orang6.position.x = 130;
+    orang6.position.y = 0;
+    orang6.position.z = 46;
+    orang6.scale.x = 0.12;
+    orang6.scale.y = 0.12;
+    orang6.scale.z = 0.12;
+    scene.add(orang6);
+  }
+);
 
 let orang7;
 loader.load("./new_assets/gumshoe_male.glb", function (gltf) {
@@ -969,6 +979,21 @@ loader.load("./new_assets/police_car.glb", function (gltf) {
   mobil3.scale.y = 9;
   mobil3.scale.z = 9;
   scene.add(mobil3);
+});
+
+const fbxLoader = new FBXLoader();
+fbxLoader.load("new_assets/Ch12_nonPBR.fbx", function (object) {
+  object.scale.setScalar(0.12);
+  object.position.x = 300;
+  object.position.y = 5;
+  object.position.z = 0;
+  let anim = new FBXLoader();
+  anim.load("new_assets/Walking.fbx", function (anim) {
+    mixer = new THREE.AnimationMixer(object);
+    let walking = mixer.clipAction(anim.animations[0]);
+    walking.play();
+  });
+  pivotWalk.add(object);
 });
 
 const controls = new PointerLockControls(cam, renderer.domElement);
@@ -1070,7 +1095,9 @@ function drawScene() {
   let delta = clock.getDelta();
   sphere.rotateY(-0.01);
   sphere2.rotateY(-0.015);
+  pivotWalk.rotateY(-0.0005);
   processKeyboard(delta);
+  if (mixer) mixer.update(delta);
   controls.lock();
   displayCoordinate.innerHTML =
     "(" +
