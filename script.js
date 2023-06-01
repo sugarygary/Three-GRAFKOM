@@ -915,6 +915,24 @@ loader.load("./new_assets/assistant_-_night_out_outfit.glb", function (gltf) {
   scene.add(orang8);
 });
 
+let orang9;
+loader.load("./new_assets/police.glb", function (gltf) {
+  orang9 = gltf.scene;
+  orang9.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  orang9.position.x = -185;
+  orang9.position.y = 0;
+  orang9.position.z = -283;
+  orang9.scale.x = 6;
+  orang9.scale.y = 6;
+  orang9.scale.z = 6;
+  scene.add(orang9);
+});
+
 let mobil2;
 loader.load("./new_assets/free_porsche_911_carrera_4s.glb", function (gltf) {
   mobil2 = gltf.scene;
@@ -932,6 +950,25 @@ loader.load("./new_assets/free_porsche_911_carrera_4s.glb", function (gltf) {
   mobil2.scale.y = 12;
   mobil2.scale.z = 12;
   scene.add(mobil2);
+});
+
+let mobil3;
+loader.load("./new_assets/police_car.glb", function (gltf) {
+  mobil3 = gltf.scene;
+  mobil3.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  mobil3.position.x = -173;
+  mobil3.position.y = -0.5;
+  mobil3.position.z = -229;
+  mobil3.rotateY(15);
+  mobil3.scale.x = 9;
+  mobil3.scale.y = 9;
+  mobil3.scale.z = 9;
+  scene.add(mobil3);
 });
 
 const controls = new PointerLockControls(cam, renderer.domElement);
