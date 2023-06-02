@@ -3,6 +3,8 @@ import { PointerLockControls } from "three/addons/controls/PointerLockControls.j
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/addons/loaders/FBXLoader";
+import { RectAreaLightHelper } from "three/addons/helpers/RectAreaLightHelper.js";
+
 var mixer;
 var boxes = [];
 var scene = new THREE.Scene();
@@ -28,17 +30,30 @@ const backgroundTexture = cubeloader.load([
 scene.background = backgroundTexture;
 cam.position.x = 0;
 cam.position.z = 90;
-cam.position.y = 5;
+cam.position.y = 20;
 document.body.appendChild(renderer.domElement);
 
 //#region dummylight
-const pointLightb = new THREE.PointLight(0xf4d4ab, 20, 200, 2);
-pointLightb.castShadow = true;
-pointLightb.position.set(0, 93, 0);
-scene.add(pointLightb);
-let pointLightbHelper = new THREE.PointLightHelper(pointLightb, 5);
-scene.add(pointLightbHelper);
+// const pointLightb = new THREE.PointLight(0xf4d4ab, 20, 200, 2);
+// pointLightb.castShadow = true;
+// pointLightb.position.set(0, 93, 0);
+// scene.add(pointLightb);
+// let pointLightbHelper = new THREE.PointLightHelper(pointLightb, 5);
+// scene.add(pointLightbHelper);
 //#endregion
+
+// const sirenBlue = new THREE.PointLight(0x171cf3, 1.8, 0, 2);
+// sirenBlue.position.set(-171, 20, -222);
+// sirenBlue.castShadow = true;
+// scene.add(sirenBlue);
+// let sirenHelper = new THREE.PointLightHelper(sirenBlue, 5);
+// scene.add(sirenHelper);
+// const sirenRed = new THREE.PointLight(0xff0000, 0, 0, 2);
+// sirenRed.position.set(-173, 20, -225);
+// sirenRed.castShadow = true;
+// scene.add(sirenRed);
+// let sirenHelperRed = new THREE.PointLightHelper(sirenRed, 5);
+// scene.add(sirenHelperRed);
 
 //#region lampu 1
 const pointLightLamp1 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
@@ -47,7 +62,6 @@ pointLightLamp1.castShadow = true;
 scene.add(pointLightLamp1);
 let pointLightHelperLamp1 = new THREE.PointLightHelper(pointLightLamp1, 5);
 scene.add(pointLightHelperLamp1);
-
 // lampu 2
 const pointLightLamp2 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
 pointLightLamp2.position.set(-316, 77, 0);
@@ -55,7 +69,6 @@ pointLightLamp2.castShadow = true;
 scene.add(pointLightLamp2);
 let pointLightHelperLamp2 = new THREE.PointLightHelper(pointLightLamp2, 5);
 scene.add(pointLightHelperLamp2);
-
 // Lampu 3
 const pointLightLamp3 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
 pointLightLamp3.position.set(317, 77, 0);
@@ -63,7 +76,6 @@ pointLightLamp3.castShadow = true;
 scene.add(pointLightLamp3);
 let pointLightHelperLamp3 = new THREE.PointLightHelper(pointLightLamp3, 5);
 scene.add(pointLightHelperLamp3);
-
 // Lampu 4
 const pointLightLamp4 = new THREE.PointLight(0xf4d4ab, 20, 150, 3);
 pointLightLamp4.position.set(0, 77, 316);
@@ -76,7 +88,8 @@ scene.add(pointLightHelperLamp4);
 const upColour = 0x717e8e;
 const downColour = 0x4040ff;
 let hemlight = new THREE.HemisphereLight(upColour, downColour, 0.5);
-// helper = new THREE.HemisphereLightHelper(hemlight, 2);
+hemlight.castShadow = true;
+// let helper = new THREE.HemisphereLightHelper(hemlight, 2);
 // hemlight.add(helper);
 scene.add(hemlight);
 
@@ -88,6 +101,61 @@ var materialSphere = new THREE.MeshStandardMaterial({
   opacity: 0,
   transparent: true,
 });
+
+// spotlight arc
+let pillarLight;
+loader.load("./new_assets/spotlight_1.glb", function (gltf) {
+  pillarLight = gltf.scene;
+  pillarLight.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  pillarLight.position.x = 58;
+  pillarLight.position.y = 0;
+  pillarLight.position.z = 100;
+  pillarLight.rotateY(Math.PI);
+  pillarLight.scale.x = 10;
+  pillarLight.scale.y = 10;
+  pillarLight.scale.z = 10;
+  scene.add(pillarLight);
+});
+let pillarLight2;
+loader.load("./new_assets/spotlight_1.glb", function (gltf) {
+  pillarLight2 = gltf.scene;
+  pillarLight2.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  pillarLight2.position.x = -62;
+  pillarLight2.position.y = 0;
+  pillarLight2.position.z = 100;
+  pillarLight2.rotateY(Math.PI);
+  pillarLight2.scale.x = 10;
+  pillarLight2.scale.y = 10;
+  pillarLight2.scale.z = 10;
+  scene.add(pillarLight2);
+});
+const rectLight = new THREE.RectAreaLight(0xffb46b, 25, 50, 30);
+rectLight.position.set(56, 15, 90);
+rectLight.lookAt(56, 110, 55);
+rectLight.castShadow = true;
+scene.add(rectLight);
+const rectLightHelper = new RectAreaLightHelper(rectLight);
+rectLight.add(rectLightHelper);
+const rectLight2 = new THREE.RectAreaLight(0xffb46b, 25, 50, 30);
+rectLight2.position.set(-56, 15, 90);
+rectLight2.lookAt(-56, 110, 55);
+rectLight2.castShadow = true;
+scene.add(rectLight2);
+const rectLightHelper2 = new RectAreaLightHelper(rectLight2);
+rectLight.add(rectLightHelper2);
+
+//
+
 const sphere = new THREE.Mesh(geometrySphere, materialSphere);
 sphere.position.set(0, 5, 0);
 const sphere2 = new THREE.Mesh(geometrySphere, materialSphere);
@@ -143,8 +211,8 @@ const spotLight = new THREE.SpotLight(
   0.1
 );
 // spotLight.castShadow = true;
-spotLight.position.set(173, 2, 13);
-spotLight.target.position.set(171, -2, 31);
+spotLight.position.set(173, 2, 17);
+spotLight.target.position.set(171, -2, 35);
 sphere.add(spotLight.target);
 sphere.add(spotLight);
 const spotLight2 = new THREE.SpotLight(
@@ -156,8 +224,8 @@ const spotLight2 = new THREE.SpotLight(
   0.1
 );
 // spotLight2.castShadow = true;
-spotLight2.position.set(183, 2, 13);
-spotLight2.target.position.set(184, -2, 31);
+spotLight2.position.set(183, 2, 17);
+spotLight2.target.position.set(184, -2, 35);
 sphere.add(spotLight2.target);
 sphere.add(spotLight2);
 
@@ -967,7 +1035,7 @@ loader.load("./new_assets/police_car.glb", function (gltf) {
   mobil3 = gltf.scene;
   mobil3.traverse(function (node) {
     if (node.isMesh) {
-      node.castShadow = true;
+      // node.castShadow = true;
       node.receiveShadow = true;
     }
   });
@@ -984,9 +1052,15 @@ loader.load("./new_assets/police_car.glb", function (gltf) {
 const fbxLoader = new FBXLoader();
 fbxLoader.load("new_assets/Ch12_nonPBR.fbx", function (object) {
   object.scale.setScalar(0.12);
-  object.position.x = 300;
-  object.position.y = 5;
+  object.position.x = 302;
+  object.position.y = 0;
   object.position.z = 0;
+  object.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
   let anim = new FBXLoader();
   anim.load("new_assets/Walking.fbx", function (anim) {
     mixer = new THREE.AnimationMixer(object);
@@ -1037,18 +1111,13 @@ function processKeyboard(delta) {
     controls.moveRight(actualSpeed);
   }
   if (keyboard["Control"]) {
-    if (cam.position.y > 11) {
+    if (cam.position.y > 20) {
       cam.translateY(-actualSpeed);
     }
   }
   if (keyboard[" "]) {
-    // if (cam.position.y < 120) {
     cam.translateY(actualSpeed);
-    // }
   }
-  // if (cam.position.y > 120) {
-  //   cam.position.y = 120;
-  // }
 
   // if arrow pressed
   if (keyboard["ArrowUp"]) {
@@ -1087,15 +1156,27 @@ function processKeyboard(delta) {
   }
 }
 
-let timer = 0;
+let ctrSiren = 0;
 function drawScene() {
   renderer.render(scene, cam);
-  // console.log(mobil.getWorldPosition());
-  // directionalLight.position.set(cam,, 30, 0);
   let delta = clock.getDelta();
+  // if (ctrSiren == 18) {
+  //   if (sirenBlue.intensity == 1.8) {
+  //     sirenBlue.intensity = 0;
+  //   } else {
+  //     sirenBlue.intensity = 1.8;
+  //   }
+  //   if (sirenRed.intensity == 1.8) {
+  //     sirenRed.intensity = 0;
+  //   } else {
+  //     sirenRed.intensity = 1.8;
+  //   }
+  //   ctrSiren = 0;
+  // }
+  // ctrSiren++;
   sphere.rotateY(-0.01);
   sphere2.rotateY(-0.015);
-  pivotWalk.rotateY(-0.0005);
+  pivotWalk.rotateY(-0.0007);
   processKeyboard(delta);
   if (mixer) mixer.update(delta);
   controls.lock();
