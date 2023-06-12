@@ -139,6 +139,40 @@ loader.load("./new_assets/spotlight_1.glb", function (gltf) {
   pillarLight2.scale.z = 10;
   scene.add(pillarLight2);
 });
+let pillarLight3;
+loader.load("./new_assets/spotlight_1.glb", function (gltf) {
+  pillarLight3 = gltf.scene;
+  pillarLight3.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  pillarLight3.position.x = 62;
+  pillarLight3.position.y = 0;
+  pillarLight3.position.z = -100;
+  pillarLight3.scale.x = 10;
+  pillarLight3.scale.y = 10;
+  pillarLight3.scale.z = 10;
+  scene.add(pillarLight3);
+});
+let pillarLight4;
+loader.load("./new_assets/spotlight_1.glb", function (gltf) {
+  pillarLight4 = gltf.scene;
+  pillarLight4.traverse(function (node) {
+    if (node.isMesh) {
+      node.castShadow = true;
+      node.receiveShadow = true;
+    }
+  });
+  pillarLight4.position.x = -58;
+  pillarLight4.position.y = 0;
+  pillarLight4.position.z = -100;
+  pillarLight4.scale.x = 10;
+  pillarLight4.scale.y = 10;
+  pillarLight4.scale.z = 10;
+  scene.add(pillarLight4);
+});
 const rectLight = new THREE.RectAreaLight(0xffb46b, 25, 50, 30);
 rectLight.position.set(56, 15, 90);
 rectLight.lookAt(56, 110, 55);
@@ -153,6 +187,20 @@ rectLight2.castShadow = true;
 scene.add(rectLight2);
 const rectLightHelper2 = new RectAreaLightHelper(rectLight2);
 rectLight.add(rectLightHelper2);
+const rectLight3 = new THREE.RectAreaLight(0xffb46b, 25, 50, 30);
+rectLight3.position.set(-56, 15, -90);
+rectLight3.lookAt(-56, 110, -55);
+rectLight3.castShadow = true;
+scene.add(rectLight3);
+const rectLightHelper3 = new RectAreaLightHelper(rectLight3);
+rectLight.add(rectLightHelper3);
+const rectLight4 = new THREE.RectAreaLight(0xffb46b, 25, 50, 30);
+rectLight4.position.set(56, 15, -90);
+rectLight4.lookAt(56, 110, -55);
+rectLight4.castShadow = true;
+scene.add(rectLight4);
+const rectLightHelper4 = new RectAreaLightHelper(rectLight4);
+rectLight.add(rectLightHelper4);
 
 //
 
@@ -233,6 +281,14 @@ sphere.add(spotLight2);
 // scene.add(spotLightHelper);
 
 //#region BUNDARAN
+let box = new THREE.Box3(
+  new THREE.Vector3(24, 0, 18),
+  new THREE.Vector3(94, 50, 62)
+);
+boxes.push(box);
+
+const helperDummy = new THREE.Box3Helper(box, 0xffff00);
+scene.add(helperDummy);
 let land;
 loader.load("./new_assets/bundaran_quarter.glb", function (gltf) {
   land = gltf.scene;
@@ -1075,8 +1131,6 @@ let clock = new THREE.Clock();
 const boxGeometry = new THREE.BoxGeometry();
 const boxMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
-const box = new THREE.Mesh(boxGeometry, boxMaterial);
-
 const axesHelper = new THREE.AxesHelper(50);
 axesHelper.position.y = 10;
 scene.add(axesHelper);
@@ -1176,7 +1230,7 @@ function drawScene() {
   // ctrSiren++;
   sphere.rotateY(-0.01);
   sphere2.rotateY(-0.015);
-  pivotWalk.rotateY(-0.0007);
+  pivotWalk.rotateY(-0.00055);
   processKeyboard(delta);
   if (mixer) mixer.update(delta);
   controls.lock();
